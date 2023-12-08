@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String? labelTxt, hintTxt;
+  final String? labelTxt, hintTxt,helperText,prefixText;
   final bool? obscured;
   final AutovalidateMode autoValidateMode;
   final TextInputType? inputType;
@@ -17,13 +17,14 @@ class CustomTextField extends StatelessWidget {
     this.onSuffixIconPressed,
     this.onPrefixIconPressed,
     this.hintTxt,
-    this.autoValidateMode = AutovalidateMode.disabled,
+    this.autoValidateMode = AutovalidateMode.disabled,  this.maxLines=1, this.helperText, this.prefixText,
   });
+  final int maxLines;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final IconData? suffixIcon, prefixIcon;
   final void Function()? onSuffixIconPressed, onPrefixIconPressed;
-
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,9 +40,13 @@ class CustomTextField extends StatelessWidget {
           color: Color.fromARGB(255, 0, 0, 0),
         ),
         onChanged: onChanged,
+        maxLines: maxLines,
         autovalidateMode: autoValidateMode,
+        
         decoration: InputDecoration(
-          helperText: hintTxt,
+          
+          helperText: helperText,
+          prefixText: prefixText,
           helperStyle: const TextStyle(
             fontSize: 16,
             color: Color.fromARGB(255, 69, 69, 69),

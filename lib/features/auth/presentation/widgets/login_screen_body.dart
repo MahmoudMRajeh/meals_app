@@ -1,10 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart' as transition;
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:meals_app/core/utls/asset_maneger.dart';
 import 'package:meals_app/features/auth/presentation/widgets/custom_button.dart';
 import 'package:meals_app/features/auth/presentation/widgets/custom_txt_form.dart';
+import 'package:meals_app/features/select_favourite_meal/presentation/pages/select_fav_meal.dart';
 import 'package:meals_app/media_query_values.dart';
 
 class LoginScreenBody extends StatefulWidget {
@@ -39,15 +41,29 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
-                     Padding(
-                      padding:const EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Opacity(
                         opacity: .7,
                         child: Column(
                           children: [
-                            Center(child: Image.asset(AssetManeger.logo,height: SizeConfig.size!*20,)),
-                           const Text(
+                            Row(
+                              children: [
+                                const Text(
+                                  "My Favourite Meal",
+                                  style: TextStyle(
+                                      color: Color(0xff7F59D0),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Image.asset(
+                                  AssetManeger.logo,
+                                  height: SizeConfig.size! * 20,
+                                  width: SizeConfig.size! * 15,
+                                ),
+                              ],
+                            ),
+                            const Text(
                               "LOGIN NOW",
                               style: TextStyle(
                                 fontSize: 32,
@@ -68,6 +84,9 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       validator: (p0) {
                         if (p0!.isEmpty) {
                           return "Feild is required";
+                        }
+                        if (!p0.isEmail) {
+                          return "Enter a valid Email";
                         }
                         return null;
                       },
@@ -124,11 +143,14 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       ],
                     ),
                     CustomBottom(
-                        txt: "LOGIN", isLoading: isLoading, onTap: () {
+                        txt: "LOGIN",
+                        isLoading: isLoading,
+                        onTap: () {
                           if (formKey.currentState!.validate()) {
-                            
-                          }else{
-                            autoValidateMode=AutovalidateMode.always;
+                            Get.to(SelectFavMeal(),
+                                transition: Transition.fadeIn);
+                          } else {
+                            autoValidateMode = AutovalidateMode.always;
                           }
                         }),
                     const SizedBox(
