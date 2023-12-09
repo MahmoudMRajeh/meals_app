@@ -17,82 +17,91 @@ class __SelectFavMealBodyStateState extends State<SelectFavMealBody> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        physics:const BouncingScrollPhysics(),
-        child: 
-           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const Text("My Favourite Meal",style: TextStyle(color: Color(0xff7F59D0),fontSize: 24,
-                    
-                    fontWeight: FontWeight.bold ),
-                    maxLines: 2,),
-                    Image.asset(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                 const Expanded(
+                    child:  Text(
+                      "My Favourite Meal",
+                      style: TextStyle(
+                          color: Color(0xff7F59D0),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                    ),
+                  ),
+                  Expanded(
+                    child: Image.asset(
                       AssetManeger.logo,
                       height: SizeConfig.size! * 20,
-                      width: SizeConfig.size!*15,
-                    ),
-                  ],
-                ),
-                 const Align(
-                  alignment: Alignment.centerLeft,
-                  child:  Text(
-                    "Please , Select your favourite meals to help us to find your request ",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: SizeConfig.size!*30,
-                  child:const MealsGridView()),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child:  Text(
-                    "Do you have any other favourite varieties ?",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                    ),
+                ],
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Please , Select your favourite meals to help us to find your request ",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
-                const CustomTextField(
-                  maxLines: 5,
-                  hintTxt: "Write here",
-                ),
-                SingleChildScrollView(
-                  child: CustomBottom(
-                    txt: "Continue",
-                    onTap: () {},
+              ),
+              SizedBox(
+                  height: SizeConfig.size! * 30, child: const MealsGridView()),
+              const SizedBox(
+                height: 10,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Do you have any other favourite varieties ?",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
-              ],
-            ),
+              ),
+              const CustomTextField(
+                maxLines: 5,
+                hintTxt: "Write here",
+              ),
+              SingleChildScrollView(
+                child: CustomBottom(
+                  txt: "Continue",
+                  onTap: () {},
+                ),
+              ),
+            ],
           ),
+        ),
       ),
     );
   }
 }
+
 class MealsGridView extends StatelessWidget {
   const MealsGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemCount: 10,
       itemBuilder: (context, index) {
-        return  const Padding(
-          padding:  EdgeInsets.all(20.0),
-          child: CustomMealItem(meal: "fish fish",),
+        return const Padding(
+          padding: EdgeInsets.all(20.0),
+          child: CustomMealItem(
+            meal: "fish fish",
+          ),
         );
       },
     );

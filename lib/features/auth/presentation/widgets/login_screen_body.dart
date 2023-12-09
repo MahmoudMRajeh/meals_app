@@ -49,17 +49,20 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                           children: [
                             Row(
                               children: [
-                                const Text(
-                                  "My Favourite Meal",
-                                  style: TextStyle(
-                                      color: Color(0xff7F59D0),
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold),
+                               const Expanded(
+                                  child:  Text(
+                                    "My Favourite Meal",
+                                    style: TextStyle(
+                                        color: Color(0xff7F59D0),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                                Image.asset(
-                                  AssetManeger.logo,
-                                  height: SizeConfig.size! * 20,
-                                  width: SizeConfig.size! * 15,
+                                Expanded(
+                                  child: Image.asset(
+                                    AssetManeger.logo,
+                                    height: SizeConfig.size! * 20,
+                                  ),
                                 ),
                               ],
                             ),
